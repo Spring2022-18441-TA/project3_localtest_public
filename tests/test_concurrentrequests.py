@@ -1,5 +1,6 @@
 import subprocess, time, filecmp, os
 import sys, traceback
+from kill_command import kill_command
 
 TIMEOUT = 20
 FILENAME = 'trailer_400p.ogg'
@@ -55,6 +56,8 @@ for node_num in range(node_total_num):
 		node_process_list[node_num].kill()
 	except EOFError:
 		pass
+
+kill_command()
 
 return_bool = False
 check_exists_bool = os.path.exists(execution_dir_2+FILENAME) \

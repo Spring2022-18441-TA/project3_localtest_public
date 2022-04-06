@@ -1,5 +1,6 @@
 import subprocess, time, filecmp, os
 import sys, traceback
+from kill_command import kill_command
 
 TIMEOUT = 5
 
@@ -43,6 +44,9 @@ try:
 	node_process_list[1].kill()
 except:
 	traceback.print_exc()
+
+
+kill_command()
 
 # Check the case where file does not exist
 

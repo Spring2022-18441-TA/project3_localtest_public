@@ -1,5 +1,6 @@
 import subprocess, time, filecmp, os
 import sys, traceback, signal
+from kill_command import kill_command
 
 TIMEOUT = 20
 
@@ -55,6 +56,7 @@ try:
 except:
 	traceback.print_exc()
 
+kill_command()
 
 
 return_bool = False
