@@ -43,7 +43,8 @@ proc = subprocess.Popen(shell_command_line_6, stdin=subprocess.PIPE, shell=True,
 node_process_list.append(proc)
 time.sleep(2)
 
-print("===> Request a medium file and wait")
+print("===> Request five medium file and TIMEOUT is %d seconds" % TIMEOUT)
+
 for node_num in range(1,node_total_num):
 	node_process_list[node_num].stdin.write(FILENAME+'\n')
 for node_num in range(1,node_total_num):
@@ -77,4 +78,25 @@ if return_bool:
 	print("===> Test Case Success")
 else:
 	print("===> Test Case Fail")
+
+if os.path.exists(execution_dir_2+FILENAME):
+	print("remove file -", execution_dir_2+FILENAME)
+	os.remove(execution_dir_2+FILENAME)
+
+if os.path.exists(execution_dir_3+FILENAME):
+	print("remove file -", execution_dir_3+FILENAME)
+	os.remove(execution_dir_3+FILENAME)
+
+if os.path.exists(execution_dir_4+FILENAME):
+	print("remove file -", execution_dir_4+FILENAME)
+	os.remove(execution_dir_4+FILENAME)
+
+if os.path.exists(execution_dir_5+FILENAME):
+	print("remove file -", execution_dir_5+FILENAME)
+	os.remove(execution_dir_5+FILENAME)
+
+if os.path.exists(execution_dir_6+FILENAME):
+	print("remove file -", execution_dir_6+FILENAME)
+	os.remove(execution_dir_6+FILENAME)
+
 print("=" * 100)

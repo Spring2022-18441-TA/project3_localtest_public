@@ -24,7 +24,7 @@ proc = subprocess.Popen(shell_command_line_2, stdin=subprocess.PIPE, shell=True,
 node_process_list.append(proc)
 time.sleep(2)
 
-print("===> Request a small file and wait")
+print("===> Request a large file and TIMEOUT is %d seconds" % TIMEOUT)
 
 node_process_list[1].stdin.write(FILENAME + '\n')
 node_process_list[1].stdin.flush()
@@ -32,13 +32,13 @@ time.sleep(TIMEOUT)
 
 print("===> Kill nodes")
 try:
-	print("kill process1")
+	# print("kill process1")
 	node_process_list[0].kill()
 except:
 	traceback.print_exc()
 
 try:
-	print("kill process2")
+	# print("kill process2")
 	node_process_list[1].kill()
 except:
 	traceback.print_exc()
@@ -51,10 +51,14 @@ return_bool = False
 check_exists_bool = os.path.exists(execution_dir_2+FILENAME)
 if check_exists_bool:
 	return_bool = filecmp.cmp(execution_dir_1+FILENAME, execution_dir_2+FILENAME, shallow=False)
-	# os.remove(execution_dir_2+FILENAME)
 
 if return_bool:
 	print("===> Test Case Success")
 else:
 	print("===> Test Case Fail")
+
+if check_exists_bool:
+	print("remove file -", execution_dir_2+FILENAME)
+	os.remove(execution_dir_2+FILENAME)
+
 print("=" * 100)

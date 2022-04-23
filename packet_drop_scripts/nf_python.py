@@ -12,7 +12,7 @@ def acceptAndControlledDrop(pkt):
 
 def signal_handler(sig, frame):
     global nfqueue
-    print('[nf_python] Sig Term, unbind')
+    print('[nf_python] unbind successful')
     nfqueue.unbind()
     sys.exit(0)
 

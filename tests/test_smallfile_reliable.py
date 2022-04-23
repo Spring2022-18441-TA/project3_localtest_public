@@ -45,13 +45,13 @@ time.sleep(TIMEOUT)
 
 print("===> Kill nodes")
 try:
-	print("kill process1")
+	# print("kill process1")
 	node_process_list[0].kill()
 except:
 	traceback.print_exc()
 
 try:
-	print("kill process2")
+	# print("kill process2")
 	node_process_list[1].kill()
 except:
 	traceback.print_exc()
@@ -70,13 +70,13 @@ if return_bool:
 else:
 	print("===> Test Case Fail")
 
-print("=" * 100)
 
 print("===> Deactivate Packet Drop")
 deactivate_cmd = "/18441_project3/localtest/packet_drop_scripts/unset-iptable.sh"
 os.system(deactivate_cmd)
+print("=" * 100)
 try:
-	print("kill nf_python")
+	# print("kill nf_python")
 	os.killpg(os.getpgid(pdrop_proc.pid), signal.SIGTERM)
 except:
 	traceback.print_exc()
