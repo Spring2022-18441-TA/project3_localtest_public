@@ -5,6 +5,7 @@ from kill_command import kill_command
 TIMEOUT = 20
 FILENAME = 'trailer_400p.ogg'
 
+print()
 print("=" * 100)
 print("===> Test case 4.1. Concurrently transferring 5 large files without packet loss")
 
@@ -75,9 +76,9 @@ if check_exists_bool:
 				& filecmp.cmp(execution_dir_1+FILENAME, execution_dir_6+FILENAME, shallow=False)
 
 if return_bool:
-	print("===> Test Case Success")
+	print("===> Test Case [[[Success]]]")
 else:
-	print("===> Test Case Fail")
+	print("===> Test Case [[[Fail]]]")
 
 if os.path.exists(execution_dir_2+FILENAME):
 	print("remove file -", execution_dir_2+FILENAME)

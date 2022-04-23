@@ -5,6 +5,7 @@ from kill_command import kill_command
 TIMEOUT = 60
 FILENAME = 'Firefox_Final_VO.ogv'
 
+print()
 print("=" * 100)
 print("===> Test case 3.1. Large File transfer test without packet loss")
 
@@ -53,9 +54,9 @@ if check_exists_bool:
 	return_bool = filecmp.cmp(execution_dir_1+FILENAME, execution_dir_2+FILENAME, shallow=False)
 
 if return_bool:
-	print("===> Test Case Success")
+	print("===> Test Case [[[Success]]]")
 else:
-	print("===> Test Case Fail")
+	print("===> Test Case [[[Fail]]]")
 
 if check_exists_bool:
 	print("remove file -", execution_dir_2+FILENAME)

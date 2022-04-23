@@ -8,7 +8,7 @@ FILENAME = 'trailer_400p.ogg'
 
 Packet_Drop_Probability = 0.01 # 1%
 
-
+print()
 print("=" * 100)
 print("===> Test case 5.2. Medium File transfer test with packet loss")
 
@@ -37,7 +37,7 @@ proc = subprocess.Popen(shell_command_line_2, stdin=subprocess.PIPE, shell=True,
 node_process_list.append(proc)
 time.sleep(2)
 
-print("===> Request a small file and wait")
+print("===> Request a medium file and TIMEOUT is %d seconds" % TIMEOUT)
 
 node_process_list[1].stdin.write(FILENAME + '\n')
 node_process_list[1].stdin.flush()
@@ -63,17 +63,19 @@ return_bool = False
 check_exists_bool = os.path.exists(execution_dir_2+FILENAME)
 if check_exists_bool:
 	return_bool = filecmp.cmp(execution_dir_1+FILENAME, execution_dir_2+FILENAME, shallow=False)
-	# os.remove(execution_dir_1+FILENAME)
 
 if return_bool:
-	print("===> Test Case Success")
+	print("===> Test Case [[[Success]]]")
 else:
-	print("===> Test Case Fail")
+	print("===> Test Case [[[Fail]]]")
+
+if check_exists_bool:
+	print("remove file -", execution_dir_2+FILENAME)
+	os.remove(execution_dir_2+FILENAME)
 
 print("===> Deactivate Packet Drop")
 deactivate_cmd = "/18441_project3/localtest/packet_drop_scripts/unset-iptable.sh"
 os.system(deactivate_cmd)
-print("=" * 100)
 try:
 	# print("kill nf_python")
 	os.killpg(os.getpgid(pdrop_proc.pid), signal.SIGTERM)
