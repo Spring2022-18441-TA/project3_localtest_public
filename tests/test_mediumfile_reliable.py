@@ -21,7 +21,8 @@ solution_path = '/18441_project3/solution/tcpserver.py'
 print("===> Activate Packet Drop")
 shell_command_line_for_packet_drop = "python3 /18441_project3/localtest/packet_drop_scripts/nf_python.py %f" % Packet_Drop_Probability
 print(shell_command_line_for_packet_drop)
-pdrop_proc = subprocess.Popen(shell_command_line_for_packet_drop, shell=True)
+# pdrop_proc = subprocess.Popen(shell_command_line_for_packet_drop, shell=True)
+pdrop_proc = subprocess.Popen(['python3', '/18441_project3/localtest/packet_drop_scripts/nf_python.py', '%f' % Packet_Drop_Probability], shell=False)
 
 activate_cmd = "/18441_project3/localtest/packet_drop_scripts/set-iptable.sh"
 os.system(activate_cmd)
@@ -78,6 +79,8 @@ deactivate_cmd = "/18441_project3/localtest/packet_drop_scripts/unset-iptable.sh
 os.system(deactivate_cmd)
 try:
 	# print("kill nf_python")
-	os.killpg(os.getpgid(pdrop_proc.pid), signal.SIGTERM)
+	# os.killpg(os.getpgid(pdrop_proc.pid), signal.SIGTERM)
+	pdrop_proc.kill()
 except:
 	traceback.print_exc()
+print("=" * 100)
